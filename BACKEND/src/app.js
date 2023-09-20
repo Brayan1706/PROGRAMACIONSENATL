@@ -14,9 +14,9 @@ app.put('/', (req, res) => {
     res.send('peticion put');
 });
 
-//app.delete('/', (req, res) => {
-  //  res.send('peticion delete');
-//});
+app.delete('/', (req, res) => {
+    res.send('peticion delete');
+});
 
 app.listen(3000, ()=> {
     console.log('servidor encendido');
