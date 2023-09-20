@@ -2,8 +2,11 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('peticion get');
+
+app.get('/:name/:id', (req, res) => {
+    const { name, id } = req.params;
+
+    res.send(`${name}: ${id}`);
 });
 
 app.post('/', (req, res) => {
