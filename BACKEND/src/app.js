@@ -38,7 +38,16 @@ const connection = mysql2.createConnection({
 connection.connect((err) => {
     if(err) throw err;
     console.log('BD conectada');
-})
+});
+
+//const querySQL = 'SHOW TABLES;';
+
+//connection.query(querySQL, (err, res) => {
+   // if (err) throw err;
+    //console.log('respuesta sql', res);
+//});
+
+
 
 app.listen(3000, ()=> {
     console.log('servidor encendido');
