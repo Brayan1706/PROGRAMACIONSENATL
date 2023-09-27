@@ -1,13 +1,20 @@
-//CRUD
+const database = require('../config/database');
+const mysql2 = require('mysql2');
 
 const readUser = (req, res) => {
-    const { name, id } = req.params;
+    const { id } = req.params;
+    const readQuery = `SELECT * FROM user WHERE id=?;`;
 
-    console.log('desde el controlador');
-
-    res.send(`${name}: ${id}`);
+    const query = mysql2.format(readQuery, [id]);
+    database.query(query, (err, result) =>{
+        if(err) throw err;
+        if (result[0] !== undefined){
+            res.json(result[0]);
+        }else{
+          res.json({ message: 'Usuario no encontrado'})  ;
+        }
+    });
 };
-
 const createUser = (req, res) => {
 const { email, password} = req.body;
 res.send(`${email}: ${password}`);
