@@ -34,18 +34,29 @@ const updateUser = (req, res) => {
     const { id } = req.params;
  const { firt_name, age} = req.body;
 
- const updateQuery = ' UPDATE user SET firt_name=?, age=? WHERE id=?';
+ const updateQuery = `UPDATE user SET firt_name=?, age=? WHERE id=?`;
 
  const query= mysql2.format(updateQuery, [firt_name, age, id]);
 
  database. query(query, (err, result) =>{
-if (err) throw err;
-res.json({message:'Usuario actualizado'});
+    if (err) throw err;
+    res.json({message:'Usuario actualizado'});
 });
 };
 
 const deleteUser = (req, res) => {
-    res.send('peticion delete');
+    const { id } = req.params;
+
+    const deleteQuery = `DELETE FROM user WHERE id=?`
+
+    const query = mysql2.format(deleteQuery, [id]);
+
+    database. query(query, (err, result) =>{
+        if (err) throw err;
+        //console.log(result);
+        res.json({message:'Usuario eliminado'});
+
+    });
 };
 
 module.exports = {
