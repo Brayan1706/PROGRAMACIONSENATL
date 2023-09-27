@@ -14,7 +14,7 @@ formGet.addEventListener('submit', async (e) => {
       if (data.message) {
         message = data.message;
       } else {
-        message = `ID: ${data.id} | Primer Nombre: ${data.first_name} | Edad: ${data.age}`;
+        message = `ID: ${data.id} | Primer Nombre: ${data.firt_name} | Edad: ${data.age}`;
       }
     });
 
@@ -24,7 +24,7 @@ formGet.addEventListener('submit', async (e) => {
 formPost.addEventListener('submit', async (e) => {
   e.preventDefault();
   let message = '';
-  const firstName = e.target.firstName.value;
+  const firtName = e.target.firtName.value;
   const age = e.target.age.value;
 
   await fetch('http://127.0.0.1:3000/user/', {
@@ -32,7 +32,7 @@ formPost.addEventListener('submit', async (e) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ first_name: firstName, age: age }),
+    body: JSON.stringify({ firt_name: firtName, age: age }),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -46,7 +46,7 @@ formPut.addEventListener('submit', async (e) => {
   e.preventDefault();
   let message = '';
   const id = e.target.id.value;
-  const firstName = e.target.firstName.value;
+  const firtName = e.target.firtName.value;
   const age = e.target.age.value;
 
   await fetch(`http://127.0.0.1:3000/user/${id}`, {
@@ -54,7 +54,7 @@ formPut.addEventListener('submit', async (e) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ first_name: firstName, age: age }),
+    body: JSON.stringify({ firt_name: firtName, age: age }),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -78,7 +78,7 @@ formDelete.addEventListener('submit', async (e) => {
       if (data.message) {
         message = data.message;
       } else {
-        message = `ID: ${data.id} | Primer Nombre: ${data.first_name} | Edad: ${data.age}`;
+        message = `ID: ${data.id} | Primer Nombre: ${data.firt_name} | Edad: ${data.age}`;
       }
     });
 
