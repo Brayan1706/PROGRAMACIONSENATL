@@ -1,3 +1,4 @@
+const { query } = require('express');
 const database = require('../config/database');
 const mysql2 = require('mysql2');
 
@@ -16,8 +17,17 @@ const readUser = (req, res) => {
     });
 };
 const createUser = (req, res) => {
-const { email, password} = req.body;
-res.send(`${email}: ${password}`);
+const { firt_name, age} = req.body;
+
+const createQuery = `INSERT INTO user(firt_name, age) VALUE (?, ?)`;
+
+const query = mysql2.format(createQuery, [firt_name, age]);
+
+database.query(query, (err, result) =>{
+    if(err) throw err;
+    //console.log(result);
+    res.send({message: 'Usuario creado'});
+});
 };
 
 const updateUser = (req, res) => {
