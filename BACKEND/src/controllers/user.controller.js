@@ -31,7 +31,17 @@ database.query(query, (err, result) =>{
 };
 
 const updateUser = (req, res) => {
-    res.send('peticion put');
+    const { id } = req.params;
+ const { firt_name, age} = req.body;
+
+ const updateQuery = ' UPDATE user SET firt_name=?, age=? WHERE id=?';
+
+ const query= mysql2.format(updateQuery, [firt_name, age, id]);
+
+ database. query(query, (err, result) =>{
+if (err) throw err;
+res.json({message:'Usuario actualizado'});
+});
 };
 
 const deleteUser = (req, res) => {
